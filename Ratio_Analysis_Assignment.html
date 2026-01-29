@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIN 3400 - Ratio Analysis Assignment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=Inconsolata:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #1A1D29;
+            --charcoal: #2B2F3E;
+            --slate: #4A5568;
+            --silver: #94A3B8;
+            --pearl: #E2E8F0;
+            --cream: #F8FAFC;
+            --gold: #C7985C;
+            --gold-dark: #9D7A4A;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background: var(--white);
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, var(--midnight) 0%, var(--charcoal) 100%);
+            color: var(--pearl);
+            padding: 2.5rem 0 3rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .course-meta {
+            font-family: 'Inconsolata', monospace;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .assignment-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .assignment-subtitle {
+            font-size: 1rem;
+            color: var(--silver);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Assignment Brief */
+        .brief {
+            background: var(--cream);
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .brief-label {
+            font-family: 'Inconsolata', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .brief-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .brief-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--pearl);
+        }
+
+        .brief-item-label {
+            color: var(--slate);
+            font-weight: 400;
+        }
+
+        .brief-item-value {
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid;
+            background: var(--cream);
+            font-size: 0.95rem;
+        }
+
+        .callout-innovation {
+            border-color: var(--gold);
+        }
+
+        .callout-investment {
+            border-color: var(--slate);
+        }
+
+        .callout-compliance {
+            border-color: var(--charcoal);
+        }
+
+        .callout-title {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .callout p {
+            margin: 0;
+            color: var(--slate);
+        }
+
+        .callout ul {
+            margin: 0.5rem 0 0 1.25rem;
+            color: var(--slate);
+        }
+
+        .callout li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--midnight);
+            margin: 3rem 0 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--pearl);
+        }
+
+        h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin: 2rem 0 1rem;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--midnight);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        /* Content */
+        p {
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--midnight);
+        }
+
+        em {
+            font-style: italic;
+            color: var(--slate);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        /* Deliverables */
+        .deliverable {
+            background: var(--white);
+            border: 1px solid var(--pearl);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .deliverable-number {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .deliverable-title {
+            font-weight: 600;
+            color: var(--midnight);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .deliverable-description {
+            font-size: 0.9rem;
+            color: var(--slate);
+            margin-bottom: 0;
+        }
+
+        /* Code */
+        pre {
+            background: var(--midnight);
+            color: var(--pearl);
+            border-left: 3px solid var(--gold);
+            padding: 1.25rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: 'Inconsolata', monospace;
+            background: var(--cream);
+            padding: 0.15rem 0.4rem;
+            font-size: 0.9em;
+            color: var(--midnight);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--pearl);
+        }
+
+        /* Assessment Table */
+        .assessment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            border: 1px solid var(--pearl);
+            font-size: 0.9rem;
+        }
+
+        .assessment-table thead {
+            background: var(--midnight);
+            color: var(--pearl);
+        }
+
+        .assessment-table th {
+            padding: 0.85rem;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .assessment-table td {
+            padding: 0.85rem;
+            border-bottom: 1px solid var(--pearl);
+            color: var(--charcoal);
+        }
+
+        .assessment-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .assessment-table tbody tr:hover {
+            background: var(--cream);
+        }
+
+        .assessment-points {
+            font-weight: 600;
+            color: var(--gold-dark);
+            text-align: right;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        /* FAQ */
+        .faq {
+            margin-bottom: 1.75rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--midnight);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-answer {
+            color: var(--slate);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pearl), transparent);
+            margin: 2.5rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--pearl);
+            text-align: center;
+            color: var(--slate);
+            font-size: 0.85rem;
+        }
+
+        .footer-contact {
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .assignment-title {
+                font-size: 1.85rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .brief-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="course-meta">FIN 3400 / Financial Management / Module Assignment</div>
+            <h1 class="assignment-title">Financial Ratio Analysis Assignment</h1>
+            <p class="assignment-subtitle">Interactive Website Development & Strategic Assessment</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Assignment Brief -->
+        <div class="brief">
+            <div class="brief-label">Assignment Overview</div>
+            <div class="brief-grid">
+                <div class="brief-item">
+                    <span class="brief-item-label">Total Points</span>
+                    <span class="brief-item-value">100</span>
+                </div>
+                <div class="brief-item">
+                    <span class="brief-item-label">Deliverable Format</span>
+                    <span class="brief-item-value">Interactive Website</span>
+                </div>
+                <div class="brief-item">
+                    <span class="brief-item-label">Analysis Length</span>
+                    <span class="brief-item-value">1,000–1,500 words</span>
+                </div>
+                <div class="brief-item">
+                    <span class="brief-item-label">Citations Required</span>
+                    <span class="brief-item-value">Minimum 5 (APA)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Innovation Callout -->
+        <div class="callout callout-innovation">
+            <div class="callout-title">Assignment Innovation</div>
+            <p>This assignment replaces the traditional research paper format with an interactive web-based presentation. You will perform the same rigorous financial analysis but communicate your findings through a modern digital medium that reflects contemporary business communication standards.</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <h2>Executive Summary</h2>
+        <p>
+            You will conduct a comprehensive financial ratio analysis of <strong>Black Knight, Inc.</strong>, evaluating liquidity, leverage, asset efficiency, and profitability metrics against industry benchmarks. Rather than submitting a conventional paper, you will develop a professional website that presents your analysis in an accessible, visually compelling format using generative AI tools.
+        </p>
+        <p>
+            This approach develops both your analytical capabilities and your proficiency in digital communication—skills increasingly essential in modern finance and consulting roles. The final deliverable should demonstrate the depth of insight expected in professional financial analysis while leveraging contemporary presentation methods.
+        </p>
+
+        <!-- Part 1 -->
+        <h2>Part 1: Quantitative Analysis</h2>
+        
+        <h3>Financial Ratio Calculations</h3>
+        <p>Download the Excel workbook <strong>"Black Knight Inc. Financial Statements Year end 2022 - TEMPLATE FOR STUDENTS.xlsx"</strong> containing consolidated financial statements and calculation templates.</p>
+
+        <h4>Required Metrics (Nine Ratios)</h4>
+        
+        <div class="deliverable">
+            <div class="deliverable-number">Liquidity Assessment</div>
+            <div class="deliverable-title">Current Ratio | Quick Ratio</div>
+            <div class="deliverable-description">Evaluate the firm's capacity to meet short-term obligations</div>
+        </div>
+
+        <div class="deliverable">
+            <div class="deliverable-number">Capital Structure Analysis</div>
+            <div class="deliverable-title">Debt Ratio | Times Interest Earned</div>
+            <div class="deliverable-description">Assess financial leverage and interest coverage adequacy</div>
+        </div>
+
+        <div class="deliverable">
+            <div class="deliverable-number">Operational Efficiency</div>
+            <div class="deliverable-title">Receivables Turnover | Total Asset Turnover</div>
+            <div class="deliverable-description">Measure asset utilization and working capital management</div>
+        </div>
+
+        <div class="deliverable">
+            <div class="deliverable-number">Profitability Metrics</div>
+            <div class="deliverable-title">Profit Margin | ROA | ROE</div>
+            <div class="deliverable-description">Evaluate earnings generation relative to sales, assets, and equity</div>
+        </div>
+
+        <p style="margin-top: 1.5rem;">Extract financial data from the provided statements, enter values into designated cells, and calculate all nine ratios. Industry benchmark comparisons are provided for contextual analysis.</p>
+
+        <!-- Part 2 -->
+        <h2>Part 2: Website Development & Analysis</h2>
+
+        <!-- Investment Requirement -->
+        <div class="callout callout-investment">
+            <div class="callout-title">Technology Investment Required</div>
+            <p>Completing this assignment necessitates access to a premium generative AI service. Free-tier versions lack the technical capabilities required for professional-grade output.</p>
+            <p style="margin-top: 0.75rem;"><strong>Recommended platforms:</strong></p>
+            <ul>
+                <li><strong>Claude Pro</strong> (Anthropic) — $20/month — Primary recommendation</li>
+                <li><strong>ChatGPT Plus</strong> (OpenAI) — $20/month — Alternative option</li>
+            </ul>
+            <p style="margin-top: 0.75rem;"><em>A single month subscription typically suffices for multiple course projects. Students experiencing financial constraints should contact the instructor to discuss accommodations.</em></p>
+        </div>
+
+        <h3>Website Components</h3>
+
+        <p>Your analysis website must integrate six core sections:</p>
+
+        <ol style="list-style-type: none; padding-left: 0;">
+            <li style="margin-bottom: 1rem;"><strong>1. Title Section:</strong> Company identification, assignment context, student attribution, fiscal year, industry classification</li>
+            <li style="margin-bottom: 1rem;"><strong>2. Company Profile:</strong> Business model overview, industry positioning, 2022 performance highlights, material events affecting results</li>
+            <li style="margin-bottom: 1rem;"><strong>3. Ratio Dashboard:</strong> All calculated metrics displayed with industry comparisons and visual performance indicators</li>
+            <li style="margin-bottom: 1rem;"><strong>4. Strategic Analysis:</strong> Detailed interpretation of each ratio category with business implications (1,000+ words total)</li>
+            <li style="margin-bottom: 1rem;"><strong>5. Executive Assessment:</strong> Synthesis of findings, strategic recommendations, investment perspective</li>
+            <li style="margin-bottom: 1rem;"><strong>6. References:</strong> Minimum five scholarly sources in APA format, including the 10-K filing</li>
+        </ol>
+
+        <h3>Analytical Framework</h3>
+
+        <p>For each ratio category, your analysis should address:</p>
+        <ul>
+            <li><strong>Interpretation:</strong> What does this metric reveal about the firm's financial position?</li>
+            <li><strong>Benchmarking:</strong> How does performance compare to industry standards?</li>
+            <li><strong>Implications:</strong> What strategic concerns or competitive advantages emerge?</li>
+            <li><strong>Context:</strong> How do broader business conditions inform these results?</li>
+        </ul>
+
+        <h3>Implementation Process</h3>
+
+        <p><strong>Preparation Phase:</strong> Organize your completed ratio calculations, draft analytical insights for each category, compile source citations, and define design preferences.</p>
+
+        <p><strong>AI Interaction:</strong> Provide comprehensive instructions to your chosen AI platform. Include all calculated ratios, key financial data, your analytical commentary, and specific design requirements. Example prompt structure:</p>
+
+        <pre>Create a professional financial analysis website for Black Knight, Inc.
+
+COMPANY CONTEXT:
+- Industry: Software & Programming
+- Fiscal Year: 2022
+- Key Metrics: [Revenue, Net Income, Assets, Equity figures]
+
+CALCULATED RATIOS:
+[List all nine ratios with industry comparisons]
+
+REQUIRED SECTIONS:
+1. Executive-style header with company identification
+2. Business overview and market context
+3. Visual ratio dashboard with performance indicators
+4. Detailed analysis by category (liquidity, leverage, efficiency, profitability)
+5. Strategic conclusions and recommendations
+6. APA-formatted references
+
+DESIGN PARAMETERS:
+Professional, sophisticated aesthetic suitable for business presentation
+Clear information hierarchy, readable typography, data visualization
+
+ANALYTICAL CONTENT:
+[Insert your prepared analysis for each ratio category]
+
+SOURCES:
+[List your references]</pre>
+
+        <p><strong>Refinement:</strong> Review generated output, test functionality across browsers, verify data accuracy, request design modifications as needed, ensure analytical content integrity.</p>
+
+        <!-- Compliance -->
+        <div class="callout callout-compliance">
+            <div class="callout-title">Academic Standards & AI Ethics</div>
+            <p><strong>Permitted AI Use:</strong> Website structure, design implementation, visual layout, formatting, technical coding</p>
+            <p style="margin-top: 0.5rem;"><strong>Required Original Work:</strong> Financial analysis, ratio interpretation, strategic insights, business implications, conclusions, recommendations</p>
+            <p style="margin-top: 0.75rem;"><em>The AI functions as a presentation tool, not an analytical substitute. You must understand and be prepared to defend all content within your submission.</em></p>
+        </div>
+
+        <!-- Assessment Criteria -->
+        <h2>Assessment Criteria</h2>
+
+        <table class="assessment-table">
+            <thead>
+                <tr>
+                    <th>Dimension</th>
+                    <th>Evaluation Criteria</th>
+                    <th>Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Technical Accuracy</strong></td>
+                    <td>Ratio calculations, formula application, data extraction</td>
+                    <td class="assessment-points">15 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Analytical Depth</strong></td>
+                    <td>Interpretation quality, benchmark analysis, strategic insights</td>
+                    <td class="assessment-points">25 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Strategic Synthesis</strong></td>
+                    <td>Conclusions, recommendations, investment perspective</td>
+                    <td class="assessment-points">10 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Research Quality</strong></td>
+                    <td>Source credibility, citation accuracy, contextual support</td>
+                    <td class="assessment-points">10 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Communication</strong></td>
+                    <td>Clarity, organization, professional tone, word count compliance</td>
+                    <td class="assessment-points">10 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Academic Integrity</strong></td>
+                    <td>Original analysis, appropriate AI use, proper attribution</td>
+                    <td class="assessment-points">5 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Visual Design</strong></td>
+                    <td>Professional appearance, information hierarchy, readability</td>
+                    <td class="assessment-points">10 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Structure & Navigation</strong></td>
+                    <td>Logical organization, accessibility, data presentation</td>
+                    <td class="assessment-points">10 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Technical Function</strong></td>
+                    <td>Cross-browser compatibility, complete content, no errors</td>
+                    <td class="assessment-points">5 pts</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="divider"></div>
+
+        <!-- FAQ -->
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq">
+            <div class="faq-question">Q: Is coding knowledge required for this assignment?</div>
+            <div class="faq-answer">No. The AI platform handles all technical implementation. Your focus remains on financial analysis and strategic interpretation.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-question">Q: Can free AI tools complete this assignment adequately?</div>
+            <div class="faq-answer">Free versions typically lack the necessary capabilities. Professional output requires premium service features including extended generation capacity, file creation functionality, and advanced formatting capabilities.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-question">Q: What analytical depth is expected?</div>
+            <div class="faq-answer">Each ratio category (liquidity, leverage, efficiency, profitability) should receive 250-375 words of analysis addressing interpretation, benchmarking, implications, and business context.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-question">Q: How should I prepare before using AI tools?</div>
+            <div class="faq-answer">Complete all ratio calculations, draft your analytical insights, compile your sources, and determine your design preferences. The AI executes your vision; you must provide the strategic content.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-question">Q: What if my website doesn't match the example aesthetic?</div>
+            <div class="faq-answer">Design variation is expected and acceptable. Priority is professional presentation quality, functional navigation, and comprehensive analytical content.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-question">Q: Are subscription costs negotiable?</div>
+            <div class="faq-answer">Students facing genuine financial hardship should contact the instructor promptly to discuss alternative arrangements or accommodation options.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Submission -->
+        <h2>Submission Requirements</h2>
+
+        <p><strong>Required Materials:</strong></p>
+        <ol>
+            <li>HTML file (single .html or .zip archive): <code>LastName_FirstName_BKI_Analysis.html</code></li>
+            <li>Excel workbook (if requested): <code>LastName_FirstName_BKI_Ratios.xlsx</code></li>
+        </ol>
+
+        <p><strong>Optional Supplements:</strong></p>
+        <ul>
+            <li>Hosted website URL (GitHub Pages, Netlify, or equivalent)</li>
+            <li>AI interaction documentation demonstrating prompt methodology</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <!-- Learning Outcomes -->
+        <h2>Learning Outcomes</h2>
+
+        <p>Upon completion, you will demonstrate proficiency in:</p>
+        <ul>
+            <li>Financial ratio calculation and interpretation methodology</li>
+            <li>Comparative performance analysis using industry benchmarks</li>
+            <li>Professional communication of complex financial information</li>
+            <li>Strategic application of generative AI as a productivity tool</li>
+            <li>Digital presentation design for business audiences</li>
+            <li>Integration of quantitative analysis with qualitative business insight</li>
+        </ul>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>For questions or clarifications:</strong> Review this document thoroughly, consult the FAQ section, post in the course forum, or attend office hours.</p>
+            <div class="footer-contact">Looking forward to your analytical insights and creative presentations.</div>
+            <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--silver);">FIN 3400 — Financial Management | Ratio Analysis Assignment | 100 Points</p>
+        </div>
+    </div>
+</body>
+</html>
