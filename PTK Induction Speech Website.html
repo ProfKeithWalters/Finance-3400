@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Lessons on the Path to Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --deep-blue: #1A2845;
+            --steel: #3D5A80;
+            --gold: #D4AF37;
+            --cream: #F8F6F0;
+            --charcoal: #2D2D2D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--navy);
+            color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(61, 90, 128, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: subtleShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtleShift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-2%, 2%); }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { left: -50%; }
+            100% { left: 50%; }
+        }
+
+        .hero-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(150px, 25vw, 400px);
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--gold);
+            text-stroke: 2px var(--gold);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 6vw, 90px);
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 32px);
+            color: var(--steel);
+            font-weight: 300;
+            font-style: italic;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-context {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--steel);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Lesson Sections */
+        .lesson {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem;
+            position: relative;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .lesson-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: center;
+        }
+
+        .lesson:nth-child(even) .lesson-container {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .lesson:nth-child(even) .lesson-content {
+            order: 2;
+        }
+
+        .lesson:nth-child(even) .lesson-visual {
+            order: 1;
+        }
+
+        .lesson-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .lesson-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 5vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideIn 0.8s ease-out 0.2s forwards;
+        }
+
+        .lesson-description {
+            font-size: clamp(18px, 2vw, 24px);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(248, 246, 240, 0.85);
+            opacity: 0;
+            animation: slideIn 0.8s ease-out 0.4s forwards;
+        }
+
+        .lesson-attribution {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: var(--steel);
+            font-style: italic;
+            opacity: 0;
+            animation: slideIn 0.8s ease-out 0.6s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .lesson-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lesson-icon {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--deep-blue), var(--steel));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lesson-icon::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), transparent);
+            opacity: 0.3;
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .icon-svg {
+            width: 140px;
+            height: 140px;
+            fill: var(--gold);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        /* The Path Forward Section */
+        .synthesis {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 2rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 100%);
+        }
+
+        .synthesis-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 6vw, 86px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .synthesis-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .synthesis-card:nth-child(1) { animation-delay: 0.2s; }
+        .synthesis-card:nth-child(2) { animation-delay: 0.4s; }
+        .synthesis-card:nth-child(3) { animation-delay: 0.6s; }
+        .synthesis-card:nth-child(4) { animation-delay: 0.8s; }
+
+        .synthesis-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+        }
+
+        .synthesis-card-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--gold);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            opacity: 0.2;
+        }
+
+        .synthesis-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .synthesis-card-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(248, 246, 240, 0.8);
+        }
+
+        .synthesis-flow {
+            text-align: center;
+            margin-top: 4rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 16px;
+            color: var(--steel);
+            letter-spacing: 0.1em;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .flow-arrow {
+            display: inline-block;
+            margin: 0 1rem;
+            color: var(--gold);
+        }
+
+        /* Closing Section */
+        .closing {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            background: var(--deep-blue);
+        }
+
+        .closing-message {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 72px);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .closing-subtitle {
+            font-size: clamp(20px, 3vw, 32px);
+            color: var(--steel);
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .closing-highlight {
+            font-size: clamp(24px, 3.5vw, 40px);
+            color: var(--gold);
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .lesson-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .lesson:nth-child(even) .lesson-content,
+            .lesson:nth-child(even) .lesson-visual {
+                order: initial;
+            }
+
+            .synthesis-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lesson {
+                padding: 4rem 1.5rem;
+            }
+
+            .lesson-icon {
+                width: 200px;
+                height: 200px;
+            }
+
+            .icon-svg {
+                width: 100px;
+                height: 100px;
+            }
+
+            .synthesis-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--navy);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--steel);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-number">4</div>
+        <h1 class="hero-title">LESSONS</h1>
+        <p class="hero-subtitle">on the Path to Excellence</p>
+        <p class="hero-context">Honor Society Induction</p>
+        <div class="scroll-indicator">↓ scroll</div>
+    </section>
+
+    <!-- Lesson 1: Start with Why -->
+    <section class="lesson">
+        <div class="lesson-container">
+            <div class="lesson-content">
+                <div class="lesson-number">Lesson One</div>
+                <h2 class="lesson-title">Start with Why</h2>
+                <p class="lesson-description">
+                    Define your purpose before pursuing your goals. Your WHY is the foundation that sustains you when motivation fails. It's the deeper reason that drives you forward, even when the path is difficult and the destination seems distant.
+                </p>
+                <p class="lesson-attribution">— Simon Sinek, Start with Why</p>
+            </div>
+            <div class="lesson-visual">
+                <div class="lesson-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson 2: Talent Is Overrated -->
+    <section class="lesson">
+        <div class="lesson-container">
+            <div class="lesson-content">
+                <div class="lesson-number">Lesson Two</div>
+                <h2 class="lesson-title">Talent Is Overrated</h2>
+                <p class="lesson-description">
+                    Excellence comes from deliberate practice, not natural ability. Focused, uncomfortable work at the edge of your ability—repeated over time—builds mastery. The gap between good and great is filled with thousands of hours of intentional effort.
+                </p>
+                <p class="lesson-attribution">— Geoff Colvin, Talent Is Overrated</p>
+            </div>
+            <div class="lesson-visual">
+                <div class="lesson-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson 3: The Secret to Success -->
+    <section class="lesson">
+        <div class="lesson-container">
+            <div class="lesson-content">
+                <div class="lesson-number">Lesson Three</div>
+                <h2 class="lesson-title">The Secret to Success</h2>
+                <p class="lesson-description">
+                    Do what you should do, when you should do it, whether you want to or not. Discipline bridges the gap between purpose and performance. It's the daily commitment to action that transforms intention into achievement.
+                </p>
+                <p class="lesson-attribution">— Dr. Terry Saafma</p>
+            </div>
+            <div class="lesson-visual">
+                <div class="lesson-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson 4: Pressure Is a Privilege -->
+    <section class="lesson">
+        <div class="lesson-container">
+            <div class="lesson-content">
+                <div class="lesson-number">Lesson Four</div>
+                <h2 class="lesson-title">Pressure Is a Privilege</h2>
+                <p class="lesson-description">
+                    High expectations are earned, not given. When the pressure builds, recognize it as proof that your work matters and people believe in you. Only those who have demonstrated excellence are entrusted with challenges that carry real weight.
+                </p>
+                <p class="lesson-attribution">— Billie Jean King, Pressure Is a Privilege</p>
+            </div>
+            <div class="lesson-visual">
+                <div class="lesson-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Path Forward -->
+    <section class="synthesis">
+        <h2 class="synthesis-title">The Path Forward</h2>
+        <div class="synthesis-grid">
+            <div class="synthesis-card">
+                <div class="synthesis-card-number">1</div>
+                <h3 class="synthesis-card-title">Start with Why</h3>
+                <p class="synthesis-card-text">Know where you're going. Your purpose guides every decision and sustains you through difficulty.</p>
+            </div>
+            <div class="synthesis-card">
+                <div class="synthesis-card-number">2</div>
+                <h3 class="synthesis-card-title">Practice Deliberately</h3>
+                <p class="synthesis-card-text">Build the skills to get there. Excellence is constructed through focused, intentional work.</p>
+            </div>
+            <div class="synthesis-card">
+                <div class="synthesis-card-number">3</div>
+                <h3 class="synthesis-card-title">Show Up with Discipline</h3>
+                <p class="synthesis-card-text">Make consistent progress. Discipline transforms knowledge into action, day after day.</p>
+            </div>
+            <div class="synthesis-card">
+                <div class="synthesis-card-number">4</div>
+                <h3 class="synthesis-card-title">Embrace Pressure</h3>
+                <p class="synthesis-card-text">Recognize when you've arrived. Pressure proves your work matters and you're trusted to deliver.</p>
+            </div>
+        </div>
+        <div class="synthesis-flow">
+            PURPOSE <span class="flow-arrow">→</span> PRACTICE <span class="flow-arrow">→</span> DISCIPLINE <span class="flow-arrow">→</span> PRESSURE <span class="flow-arrow">→</span> EXCELLENCE
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing">
+        <h2 class="closing-message">Congratulations</h2>
+        <p class="closing-subtitle">on earning the privilege of</p>
+        <p class="closing-highlight">greater challenges ahead</p>
+    </section>
+</body>
+</html>
